@@ -2,9 +2,17 @@ const router = require('express').Router();
 const WebhookResponse = require('@jambonz/node-client').WebhookResponse;
 const text = `<speak>Welcome to Page Six</speak>`;
 
-router.post('/', (req, res) => {
+const repo = require('./repo.js');
+
+router.post('/', async (req, res) => {
   const {logger} = req.app.locals;
-  logger.debug({payload: req.body}, 'POST /pagesix');
+  console.log(">>>>> PAGE 6", req.body);
+
+  var cleanPhoneNumber = req.body.from.replace(/[^0-9.]/g, '');
+
+  console.log(">>>> PAGE 6 incoming phone number", cleanPhoneNumber);
+  console.log("+++++++PAGE 6", repo);
+  await repo.getUser(cleanPhoneNumber);
   try {
     const app = new WebhookResponse();
     app
