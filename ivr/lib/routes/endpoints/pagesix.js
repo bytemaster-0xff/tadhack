@@ -12,7 +12,11 @@ router.post('/', async (req, res) => {
 
   console.log(">>>> PAGE 6 incoming phone number", cleanPhoneNumber);
   console.log("+++++++PAGE 6", repo);
-  await repo.getUser(cleanPhoneNumber);
+  var user = await repo.getUser(cleanPhoneNumber);
+  console.log(user);
+  user.lastUpdated = new Date().toISOString();
+  await repo.putUser(user);
+
   try {
     const app = new WebhookResponse();
     app

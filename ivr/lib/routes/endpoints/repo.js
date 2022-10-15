@@ -24,6 +24,8 @@ repo.getUser = (async (id) => {
 
     console.log(filteredDocs);
     
+    return filteredDocs[0];
+
     client.close();
 });
 
@@ -32,7 +34,7 @@ repo.putUser = (async (user) => {
     await client.connect();
     const db = client.db("playground");
     const collection = db.collection('documents');
-    const filteredDocs = await collection.update(
+    const filteredDocs = await collection.updateOne(
         { 'phone':user.phone }, 
         {$set:user});
     console.log(filteredDocs);
