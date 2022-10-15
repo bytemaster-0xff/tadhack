@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const WebhookResponse = require('@jambonz/node-client').WebhookResponse;
-const text = `<speak>Welcome to Page One</speak>`;
+const text = `<speak>Hello, you have come to page one. This is a test.</speak>`;
 
 router.post('/', (req, res) => {
   const {logger} = req.app.locals;
