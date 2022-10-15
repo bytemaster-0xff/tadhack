@@ -11,8 +11,6 @@ router.get('/:uid', async function(req, res, next) {
   const db = client.db("playground");
   const collection = db.collection('documents');
   const filteredDocs = await collection.find({ 'phone':req.params.uid }).toArray();
- 
-
   res.json(filteredDocs);
   client.close();
 });

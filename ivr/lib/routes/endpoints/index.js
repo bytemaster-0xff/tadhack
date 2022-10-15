@@ -6,4 +6,8 @@ router.use('/dial-time', require('./dial-time'));
 router.use('/', require('./home'));
 router.use('/index', require('./home'));
 router.use('/welcome', require('./welcome'));
+router.use('/pageone', require('./pageone'));
+router.use('/pagetwo', require('./pagetwo'));
+router.use('/pagethree', require('./pagethree'));
+router.use('/pagefour', require('./pagefour'));
 module.exports = router;
