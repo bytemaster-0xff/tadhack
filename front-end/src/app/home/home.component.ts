@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataloadService } from '../services/dataload.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
   phoneNumber:string | undefined;
   users: any[] | undefined;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private dataloadService: DataloadService) { }
 
   ngOnInit() {
     this.phoneNumber = '7274550530'
@@ -25,6 +26,10 @@ export class HomeComponent implements OnInit {
     await this.userService.removeUser(id);
     console.log('removed');
     await this.showEvacuationZone();
+  }
+
+  async loadFloodZones() {
+    await this.dataloadService.populateUserFloodZones();
   }
 
 }
