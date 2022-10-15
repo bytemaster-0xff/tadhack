@@ -50,6 +50,10 @@ router.post('/process', (req, res) => {
       logger.debug('you pressed 4');
       nextPage = '/pagefour';
     }
+    else if(req.body.digits == '5'){
+      logger.debug('you pressed 5');
+      nextPage = '/pagefive';
+    } 
 
     try {
       const app = new WebhookResponse();
