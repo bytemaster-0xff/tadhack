@@ -18,7 +18,7 @@ router.post('/collect', (req, res) => {
         timeout:60,
         finishOnKey:'#',
         input: ['digits','speech'],
-        say:{text:`<speak>Please enter your app.</speak>`}
+        say:{text:`<speak>Please enter your app number and press #.</speak>`}
     });
     res.status(200).json(app);
   } catch (err) {
@@ -53,7 +53,7 @@ router.post('/process', (req, res) => {
     else if(req.body.digits == '5'){
       logger.debug('you pressed 5');
       nextPage = '/pagefive';
-    } 
+    }
 
     try {
       const app = new WebhookResponse();
