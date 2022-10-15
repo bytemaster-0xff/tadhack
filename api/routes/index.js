@@ -21,7 +21,7 @@ router.get('/dataload/floodzones', async function (req, res, next) {
   await client.connect();
   console.log('Connected successfully to server - inserting zone document');
   const db = client.db("playground");
-  const collection = db.collection('documents');
+  const collection = db.collection('floodzones');
 
   const documents = [
     { 'phone': '3525592559', 'name': 'GV: James', 'county': 'Pinellas', 'city': 'Palm Harbor', 'state': 'FL', 'zone': 'D' },
