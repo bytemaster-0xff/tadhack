@@ -18,7 +18,7 @@ router.post('/collect', (req, res) => {
         timeout:60,
         finishOnKey:'#',
         input: ['digits','speech'],
-        say:{text:`<speak>Please enter your app number and press #.</speak>`}
+        say:{text:`<speak>Please enter your app.</speak>`}
     });
     res.status(200).json(app);
   } catch (err) {
