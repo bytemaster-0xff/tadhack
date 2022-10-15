@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
 
   async removeUser(id: string) {
     await this.userService.removeUser(id);
-    this.showEvacuationZone();
+    console.log('removed');
+    await this.showEvacuationZone();
   }
 
 }

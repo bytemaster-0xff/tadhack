@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -23,12 +23,21 @@ export class UserService {
   }
 
   remove(url: string): Promise<boolean> {
+    var options = {
+      headers: new HttpHeaders({
+         'Accept':'text/plain'
+      }),
+      'responseType': 'text' as 'json'
+   }
+
     const promise = new Promise<boolean>((resolve, reject) => {
-      this.client.delete<boolean>(url)
+      this.client.delete(url, options)
         .subscribe((response) => {
+          console.log('resolved');
           resolve(true);
         },
           (err) => {
+            console.log('rejected', err);
               reject(false);
           });
     });
