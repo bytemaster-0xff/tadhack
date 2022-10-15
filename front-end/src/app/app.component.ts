@@ -12,8 +12,6 @@ export class AppComponent implements OnInit  {
   }
 
   async ngOnInit() {
-    console.log('requesting users');
-    await this.userService.getUsers();
   }
 
   title = 'front-end';

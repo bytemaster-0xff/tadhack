@@ -7,7 +7,7 @@ var ObjectID = require('mongodb').ObjectID;
 const url = 'mongodb://localhost:27017';
 const client = new MongoClient(url);
 
-/* GET users listing. */
+/* GET users listing. */ 
 router.get('/:uid', async function(req, res, next) {
   await client.connect();
   console.log(req.params.uid);

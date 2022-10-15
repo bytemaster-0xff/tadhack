@@ -55,6 +55,18 @@ export class UserService {
     console.log('response', users);
   }
 
+  async getUser(id: string) : Promise<any> {
+    const user = await this.request<any>(`https://api-ivr.iothost.net/user/${id}`);
+    console.log('response', user);
+    return user;
+  }
+
+  async getAllUsers() : Promise<any[]> {
+    const users = await this.request<any[]>('https://api-ivr.iothost.net/users');
+    console.log('response', users);
+    return users;
+  }
+
   base: string = "https://api-ivr.iothost.net";
 
   async getEvacuationZone(phoneNumber: string): Promise<any> {
@@ -63,6 +75,8 @@ export class UserService {
   }
 
   async removeUser(id: string): Promise<boolean> {
+    console.log('userService: attempting to delete user', id, new Date());
+    
     var url = this.base + `/user/${id}`;
     return await this.remove(url);
   }
