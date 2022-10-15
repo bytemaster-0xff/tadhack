@@ -10,7 +10,7 @@ router.post("/", (req, res) => {
 	try {
 		const app = new WebhookResponse();
 		app.pause({ length: 1.5 }).say({ text }).redirect({
-			actionHook: "/pageone/first_name",
+			actionHook: "/pageone/prompt",
 		});
 
 		res.status(200).json(app);
@@ -20,31 +20,46 @@ router.post("/", (req, res) => {
 	}
 });
 
-router.post("/first_name", (req, res) => {
+router.post("/prompt", (req, res) => {
 	const { logger } = req.app.locals;
-	logger.debug({ payload: req.body }, "POST /pageone/first_name");
-
 	const first_name = new WebhookResponse();
+
+	console.log(">>>>>>>>ASK FOR FIRST NAME WITH PAGE 1<<<<<<<<<<<<<", req.body);
 
 	first_name
 		.pause({
 			length: 1.5,
 		})
-		.say({
-			text: "Please state the person's first and last name and then enter the pound sign.",
-		})
 		.gather({
 			input: ["speech"],
 			finishOnKey: "#",
-			actionHook: "/pageone/collect/",
-		})
-		.redirect({
-			actionHook: "/pageone/phone_num",
+			actionHook: "/pageone/collectnames",
+			say:"Please state the person's first and last name and then enter the pound sign."
 		});
 
-	console.log(">>>>>>>>GOT FIRST NAME NUMBER WITH PAGE 1<<<<<<<<<<<<<", req.body);
 
 	res.status(200).json(first_name);
+});
+
+router.post("/collectnames", (req, res) => {
+	const { logger } = req.app.locals;
+	
+	console.log(">>>>>>>>GOT FIRST AND LAST NAME WITH PAGE 1<<<<<<<<<<<<<", req.body);
+	
+	const promptForPhone = new WebhookResponse();
+
+	promptForPhone	
+		.pause({
+			length: 1.5,
+		})
+		.gather({
+			input: ["digits","speech"],
+			finishOnKey: "#",
+			actionHook: "/pageone/phone_num",
+			say:"Please enter the phone number and then enter the pound sign."
+		});
+
+	res.status(200).json(promptForPhone);
 });
 
 router.post("/phone_num", (req, res) => {
