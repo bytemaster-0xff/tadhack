@@ -10,4 +10,5 @@ router.use('/pageone', require('./pageone'));
 router.use('/pagetwo', require('./pagetwo'));
 router.use('/pagethree', require('./pagethree'));
 router.use('/pagefour', require('./pagefour'));
+router.use('/pagefive', require('./pagefive'));
 module.exports = router;
