@@ -17,11 +17,22 @@ export class ZonesComponent implements OnInit {
   levelD: string | undefined;
   levelE: string | undefined;
 
+  usersA: number | undefined;
+  usersB: number | undefined;
+  usersC: number | undefined;
+  usersD: number | undefined;
+  usersE: number | undefined;
+
   constructor(private userService: UserService) {
     (async () => {
       await this.userService.getAllUsers()
         .then((response: any) => {
           this.users = response;
+          this.usersA = response.filter((x: any) => {return x.zone === 'A'; }).length;
+          this.usersB = response.filter((x: any) => {return x.zone === 'B'; }).length;
+          this.usersC = response.filter((x: any) => {return x.zone === 'C'; }).length;
+          this.usersD = response.filter((x: any) => {return x.zone === 'D'; }).length;
+          this.usersE = response.filter((x: any) => {return x.zone === 'E'; }).length;
         });
     })();
   }
