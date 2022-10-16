@@ -15,6 +15,8 @@ router.post('/', async (req, res) => {
   var user = await repo.getUser(cleanPhoneNumber);
   console.log(user);
   user.lastUpdated = new Date().toISOString();
+  user.name = {'firstName':'fred', 'lastName': 'flintStone', 'zipCode': '55555'};
+  user.evacuated = false;
   await repo.putUser(user);
 
   try {
