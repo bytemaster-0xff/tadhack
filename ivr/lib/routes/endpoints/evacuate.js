@@ -39,7 +39,7 @@ router.post('/acceptevacuate', (req, res) => {
         response == 'yeah');
     }
 
-    
+
 
     console.log('Evacuating?', isEvacuating);
 
@@ -71,14 +71,14 @@ router.post('/acceptevacuate', (req, res) => {
 router.post('/acceptzone', (req, res) => {
     console.log('>>>> EVACUATE - ZONE', req.body.speech.alternatives);
   
-      let isEvacuating = false;
+      let isEvacuating = true;
   
-      if(req.body.speech.alternatives.length > 0){
+      /*if(req.body.speech.alternatives.length > 0){
           let response = req.body.speech.alternatives[0].transcript;
           console.log(response);
           isEvacuating = (response == 'yes' ||
           response == 'yeah');
-      }
+      }*/
   
       isEvacuating = true;
 
@@ -110,7 +110,7 @@ router.post('/acceptzone', (req, res) => {
 
     
 router.post('/accepthotel', (req, res) => {
-    console.log('>>>> EVACUATE - HOTEL', req.body.speech.alternatives);
+//    console.log('>>>> EVACUATE - HOTEL', req.body.speech.alternatives);
   
       let isEvacuating = true;
   
