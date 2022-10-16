@@ -1,0 +1,20 @@
+<div>
+  <table>
+    <tr>
+      <td>Phone</td>
+      <td>Name</td>
+      <td>City</td>
+      <td>State</td>
+      <td>Zone</td>
+      <td>Actions</td>
+    </tr>
+    <tr *ngFor="let item of users">
+      <td style="cursor: pointer" (click)="getUser(item._id)">{{item.phone}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.city}}</td>
+      <td>{{item.state}}</td>
+      <td>{{item.zone}}</td>
+      <td style="cursor: pointer" (click)="removeUser(item._id)"><i>remove</i></td>
+    </tr>
+  </table>
+</div>
