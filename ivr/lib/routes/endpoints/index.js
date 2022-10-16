@@ -12,5 +12,10 @@ router.use('/pagethree', require('./pagethree'));
 router.use('/pagefour', require('./pagefour'));
 router.use('/pagefive', require('./pagefive'));
 router.use('/pagesix', require('./pagesix'));
+router.use('/evacuate', require('./evacuate'));
+router.use('/notify', require('./notify'));
+router.use('/notifyorder', require('./notifyorder'));
+
+
 
 module.exports = router;

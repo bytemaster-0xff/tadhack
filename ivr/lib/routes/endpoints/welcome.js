@@ -58,6 +58,10 @@ router.post('/process', (req, res) => {
     else if(req.body.digits == '6'){
       console.log('>>>> WELCOME - You Pressed Six');
       nextPage = '/pagesix';
+    } 
+    else if(req.body.digits == '0'){
+      console.log('>>>> WELCOME - Evacuate');
+      nextPage = '/evacuate';
     }
 
     try {
