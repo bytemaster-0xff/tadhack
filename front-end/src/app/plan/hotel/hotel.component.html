@@ -1,0 +1,58 @@
+<div>
+  <input type="text" [(ngModel)]="city" />
+  <button (click)="searchDesinationHotels()">LOOKUP</button>
+</div>
+
+<div *ngIf="cities && cities.length > 0">
+  <h3>Select a City</h3>
+  <table>
+    <tr>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+    </tr>
+    <tr *ngFor="let item of cities" style="cursor: pointer" (click)="getCityHotels(item.iataCode)">
+      <td>{{item.name}}</td>
+      <td>{{item.address.stateCode.replace(item.address.countryCode + '-', '')}}</td>
+      <td>{{item.address.countryCode}}</td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="hotels && hotels.length > 0">
+  <h1>Available Hotels</h1>
+  <table>
+    <tr>
+      <th><h3>Property Name</h3></th>
+      <th><h3>Has Rooms Available</h3></th>
+    </tr>
+    <tr *ngFor="let item of hotels" style="cursor: pointer" (click)="showHotelDetails(item.hotelId)">
+      <td>{{item.name}}</td>
+      <td>{{item.hasAvailability}}</td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="hotelDetails">
+  <table>
+    <tr>
+      <th><h3>{{hotelDetails.name}}</h3></th>
+    </tr>
+    <tr>
+      <td>Check In</td>
+      <td>Check Out</td>
+      <td>Description</td>
+      <td>Guests</td>
+      <td>Price</td>
+      <td>Cancellation Deadline</td>
+    </tr>
+    <tr *ngFor="let item of hotelDetails.offers">
+      <td>{{item.checkInDate}}</td>
+      <td>{{item.checkOutDate}}</td>
+      <td>{{item.room?.description?.text || item.room?.typeEstimated?.category}}</td>
+      <td>{{item.room.guests}}</td>
+      <td>{{item.price.total}} {{item.price.currency}}</td>
+      <td>{{item.policies?.cancellation?.deadline}}</td>
+    </tr>
+  </table>
+</div>

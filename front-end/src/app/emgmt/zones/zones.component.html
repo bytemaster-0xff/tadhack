@@ -1,0 +1,64 @@
+<div>
+  <table>
+    <tr>
+      <td>Zone A</td>
+      <td>
+        <select [(ngModel)]="levelA">
+          <option *ngFor="let level of levels">{{level}}</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="notifyUsers('A')">Notify Users</button>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>Zone B</td>
+      <td>
+        <select [(ngModel)]="levelB">
+          <option *ngFor="let level of levels">{{level}}</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="notifyUsers('B')">Notify Users</button>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>Zone C</td>
+      <td>
+        <select [(ngModel)]="levelC">
+          <option *ngFor="let level of levels">{{level}}</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="notifyUsers('C')">Notify Users</button>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>Zone D</td>
+      <td>
+        <select [(ngModel)]="levelD">
+          <option *ngFor="let level of levels">{{level}}</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="notifyUsers('D')">Notify Users</button>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>Zone E</td>
+      <td>
+        <select [(ngModel)]="levelE">
+          <option *ngFor="let level of levels">{{level}}</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="notifyUsers('E')">Notify Users</button>
+      </td>
+    </tr>
+
+  </table>
+</div>

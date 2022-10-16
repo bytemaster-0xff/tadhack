@@ -8,6 +8,10 @@ export class UserService {
 
   constructor(private client: HttpClient) { }
 
+  fireAndForget = (url: string) => {
+    this.client.get(url);
+  }
+
   request<TData>(url: string): Promise<TData> {
     const promise = new Promise<TData>((resolve, reject) => {
       this.client.get<TData>(url)
@@ -15,7 +19,7 @@ export class UserService {
           resolve(response);
         },
           (err) => {
-              reject(err.message);
+            reject(err.message);
           });
     });
 
@@ -25,10 +29,10 @@ export class UserService {
   remove(url: string): Promise<boolean> {
     var options = {
       headers: new HttpHeaders({
-         'Accept':'text/plain'
+        'Accept': 'text/plain'
       }),
       'responseType': 'text' as 'json'
-   }
+    }
 
     const promise = new Promise<boolean>((resolve, reject) => {
       this.client.delete(url, options)
@@ -38,7 +42,7 @@ export class UserService {
         },
           (err) => {
             console.log('rejected', err);
-              reject(false);
+            reject(false);
           });
     });
 
@@ -55,13 +59,13 @@ export class UserService {
     console.log('response', users);
   }
 
-  async getUser(id: string) : Promise<any> {
+  async getUser(id: string): Promise<any> {
     const user = await this.request<any>(`https://api-ivr.iothost.net/user/${id}`);
     console.log('response', user);
     return user;
   }
 
-  async getAllUsers() : Promise<any[]> {
+  async getAllUsers(): Promise<any[]> {
     const users = await this.request<any[]>('https://api-ivr.iothost.net/users');
     console.log('response', users);
     return users;
@@ -76,9 +80,17 @@ export class UserService {
 
   async removeUser(id: string): Promise<boolean> {
     console.log('userService: attempting to delete user', id, new Date());
-    
+
     var url = this.base + `/user/${id}`;
     return await this.remove(url);
+  }
+
+  notifyUser = async (id: string) => {
+    await this.request(`https://api-ivr.iothost.net/calls/place/${id}/notify`);
+  }
+
+  notifyOrderUser = async (id: string) => {
+    await this.request(`https://api-ivr.iothost.net/calls/place/${id}/notifyorder`);
   }
 
 }
